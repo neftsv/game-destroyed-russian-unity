@@ -18,10 +18,13 @@ public class Scrolling : MonoBehaviour
 
 	void Update()
 	{
-		gameObject.transform.Translate(-Vector3.forward * GameControl.instance.speed * Time.deltaTime); //Scroll Road
-		if (gameObject.transform.position.z <= -v_size.z)   //Repair road
+		if (GameControl.instance.gameStage >= 1)
 		{
-			gameObject.transform.position += new Vector3(0, 0, v_size.z * 2);
+			gameObject.transform.Translate(-Vector3.forward * GameControl.instance.speed * Time.deltaTime); //Scroll Road
+			if (gameObject.transform.position.z <= -v_size.z)   //Repair road
+			{
+				gameObject.transform.position += new Vector3(0, 0, v_size.z * 2);
+			}
 		}
 	}
 }

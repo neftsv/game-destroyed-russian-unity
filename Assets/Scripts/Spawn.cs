@@ -29,11 +29,14 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
-        timeSinceLastSpawned += Time.deltaTime;
-        if(timeSinceLastSpawned > spawnRate)
+        if (GameControl.instance.gameStage == 2)
         {
-            timeSinceLastSpawned = 0f;
-            SpawnObstacle();
+            timeSinceLastSpawned += Time.deltaTime;
+            if (timeSinceLastSpawned > spawnRate)
+            {
+                timeSinceLastSpawned = 0f;
+                SpawnObstacle();
+            }
         }
     }
 
@@ -77,7 +80,7 @@ public class Spawn : MonoBehaviour
                 //Debug.Log(i);
                 //Debug.Log(position[i]);
                 obstacle4.Add(obstacle[Random.Range(0, obstacle.Count)]);
-                Instantiate(obstacle4[listCount], new Vector3(position[i], 0.5f, Random.Range(30f, 50f)), Quaternion.identity);
+                Instantiate(obstacle4[listCount], new Vector3(position[i], 0f, Random.Range(35f, 45f)), Quaternion.identity);
                 listCount++;
             }
         }
