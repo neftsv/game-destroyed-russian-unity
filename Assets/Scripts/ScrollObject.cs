@@ -18,10 +18,13 @@ public class ScrollObject : MonoBehaviour
 
 	void Update()
 	{
-		gameObject.transform.Translate(-Vector3.forward * GameControl.instance.speed * Time.deltaTime); //Scroll Road
-		if (gameObject.transform.position.z <= -150)   //Repair road
+		if (GameControl.instance.gameStage == 2)
 		{
-			Destroy(gameObject);
+			gameObject.transform.Translate(-Vector3.forward * GameControl.instance.speed * Time.deltaTime); //Scroll Road
+			if (gameObject.transform.position.z <= -80)   //Repair road
+			{
+				Destroy(gameObject);
+			}
 		}
 	}
 }

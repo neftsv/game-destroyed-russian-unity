@@ -25,15 +25,19 @@ public class Spawn : MonoBehaviour
             minSpawnX += 4;
             //Debug.Log(position[i]);
         }
+        obstacle[0].gameObject.transform.Rotate(new Vector3(0f, 180f, 0f)); 
     }
 
     void Update()
     {
-        timeSinceLastSpawned += Time.deltaTime;
-        if(timeSinceLastSpawned > spawnRate)
+        if (GameControl.instance.gameStage == 2)
         {
-            timeSinceLastSpawned = 0f;
-            SpawnObstacle();
+            timeSinceLastSpawned += Time.deltaTime;
+            if (timeSinceLastSpawned > spawnRate)
+            {
+                timeSinceLastSpawned = 0f;
+                SpawnObstacle();
+            }
         }
     }
 
@@ -45,7 +49,7 @@ public class Spawn : MonoBehaviour
         num4.Add(0); num4.Add(1); num4.Add(2); num4.Add(3);
 
         randCount = Random.Range(1, 4);
-        Debug.Log("\nrand count - " + randCount);
+        //Debug.Log("\nrand count - " + randCount);
         int[] destroyObj = new int[randCount];
 
         for (int i = 0; i < destroyObj.Length; i++)
@@ -54,7 +58,7 @@ public class Spawn : MonoBehaviour
             destroyObj[i] = num4[temp];
             num4.RemoveAt(temp);
             
-            Debug.Log(i + " - " + destroyObj[i]);
+            //Debug.Log(i + " - " + destroyObj[i]);
         }
 
         int listCount = 0;
@@ -77,7 +81,7 @@ public class Spawn : MonoBehaviour
                 //Debug.Log(i);
                 //Debug.Log(position[i]);
                 obstacle4.Add(obstacle[Random.Range(0, obstacle.Count)]);
-                Instantiate(obstacle4[listCount], new Vector3(position[i], 0.5f, Random.Range(30f, 50f)), Quaternion.identity);
+                Instantiate(obstacle4[listCount], new Vector3(position[i], 0f, Random.Range(35f, 45f)), Quaternion.identity);
                 listCount++;
             }
         }

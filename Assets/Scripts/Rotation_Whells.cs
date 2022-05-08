@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Rotation_Whells : MonoBehaviour
 {
-
+    public float speed = 150f;
     void Update()
     {
-        gameObject.transform.Rotate(new Vector3());
+        transform.Rotate(new Vector3(speed, 0, 0) * Time.deltaTime);
     }
 }
