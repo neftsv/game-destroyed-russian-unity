@@ -25,6 +25,7 @@ public class Spawn : MonoBehaviour
             minSpawnX += 4;
             //Debug.Log(position[i]);
         }
+        obstacle[0].gameObject.transform.Rotate(new Vector3(0f, 180f, 0f)); 
     }
 
     void Update()
@@ -48,7 +49,7 @@ public class Spawn : MonoBehaviour
         num4.Add(0); num4.Add(1); num4.Add(2); num4.Add(3);
 
         randCount = Random.Range(1, 4);
-        Debug.Log("\nrand count - " + randCount);
+        //Debug.Log("\nrand count - " + randCount);
         int[] destroyObj = new int[randCount];
 
         for (int i = 0; i < destroyObj.Length; i++)
@@ -57,7 +58,7 @@ public class Spawn : MonoBehaviour
             destroyObj[i] = num4[temp];
             num4.RemoveAt(temp);
             
-            Debug.Log(i + " - " + destroyObj[i]);
+            //Debug.Log(i + " - " + destroyObj[i]);
         }
 
         int listCount = 0;

@@ -21,7 +21,7 @@ public class ScrollObject : MonoBehaviour
 		if (GameControl.instance.gameStage == 2)
 		{
 			gameObject.transform.Translate(-Vector3.forward * GameControl.instance.speed * Time.deltaTime); //Scroll Road
-			if (gameObject.transform.position.z <= -150)   //Repair road
+			if (gameObject.transform.position.z <= -80)   //Repair road
 			{
 				Destroy(gameObject);
 			}

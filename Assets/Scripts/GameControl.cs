@@ -16,6 +16,14 @@ public class GameControl : MonoBehaviour
 	public TextMeshProUGUI GameOverText;
 	public Button playButton;
 	public Button RestartButton;
+
+	public GameObject Fire;
+
+	public AudioSource bang;
+	public AudioSource audio_menu;
+	public AudioSource audio_play;
+	public AudioSource audio_game;
+
 	public float speed = 10f;
 	public float carSpeed = 5f;
 	public float frequency = 2f;
@@ -40,6 +48,7 @@ public class GameControl : MonoBehaviour
 		Button restartbtn = RestartButton.GetComponent<Button>();
 		playbtn.onClick.AddListener(PlayBTN);
 		restartbtn.onClick.AddListener(RestartBTN);
+		audio_menu.Play();
 	}
 
 	void PlayBTN()
@@ -49,6 +58,8 @@ public class GameControl : MonoBehaviour
 		gameStage = 2;
         cameraFront.gameObject.SetActive(true);
         cameraSide.gameObject.SetActive(false);
+		audio_menu.Stop();
+		audio_play.Play();
     }
 
 	void RestartBTN()
@@ -60,9 +71,10 @@ public class GameControl : MonoBehaviour
 		cameraFront.gameObject.SetActive(false);
 		cameraSide.gameObject.SetActive(true);
 		car.transform.position = new Vector3(2f, 1f, -70f);
+		bang.Stop();
+		audio_menu.Play();
+		Fire.SetActive(false);
 	}
-
-	
 
 	private void FixedUpdate()
     {
@@ -70,11 +82,13 @@ public class GameControl : MonoBehaviour
 		{
 			score += speed * Time.deltaTime;
 			scoreText.text = "Score: " + Mathf.RoundToInt(score);
+			if (!audio_play.isPlaying && !audio_game.isPlaying && !audio_menu.isPlaying)
+				audio_game.Play();
 		}
 		if (gameStage == 1)
         {
 			Destroy(GameObject.FindGameObjectWithTag("Obstacle"));
 		}
-
+		
     }
 }
